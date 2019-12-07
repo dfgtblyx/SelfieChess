@@ -29,7 +29,7 @@ public class ChessPanel extends View {
     //棋盘线定义
     private Paint panelLine;
 
-    //棋盘线颜色
+    //棋盘线颜色 white
     private int panelLineColor = 0xFFFFFFFF;
 
     //ab user棋子
@@ -37,7 +37,7 @@ public class ChessPanel extends View {
     private Bitmap userB;
 
     //比例
-    private float scale = 3 / 4;
+    private float scale = 3 * 1.0f / 4;
 
     //存储点击位置
     private List<Point> useraArray = new ArrayList<>();
@@ -46,6 +46,9 @@ public class ChessPanel extends View {
     private boolean turnofa = true;
 
     //Constructor
+    public ChessPanel(Context context) {
+        this(context, null);
+    }
     public ChessPanel(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         //setBackgroundColor(0xFFFFFFFF);
@@ -81,9 +84,9 @@ public class ChessPanel extends View {
 //        lineHeight = panelSize * 1.0f / (lineNumber);
         lineHeight = h * 1.0f / (lineNumber + 1);
         //设置棋子大小
-        //int starSize = (int) (lineHeight * scale);
-        //userA = Bitmap.createScaledBitmap(userA, starSize, starSize, false);
-        //userB = Bitmap.createScaledBitmap(userA, starSize, starSize, false);
+        int starSize = (int) (lineHeight * scale);
+        userA = Bitmap.createScaledBitmap(userA, starSize, starSize, false);
+        userB = Bitmap.createScaledBitmap(userB, starSize, starSize, false);
     }
 
     //绘制
@@ -98,24 +101,6 @@ public class ChessPanel extends View {
      * 画棋盘
      * @param canvas
      */
-//    private void chessboard(Canvas canvas) {
-//        int w = panelSize;
-//        float lHeight = lineHeight;
-//        //横格子
-//        for (int i = 0; i < lineNumber; i++) {
-//            int xstart = (int) (lHeight / 2);
-//            int xend = (int) (w - lHeight / 2);
-//            int y = (int) ((0.5 + i) * lHeight);
-//            canvas.drawLine(xstart, y, xend, y, panelLine);
-//        }
-//        //竖格子
-//        for (int i = 0; i < lineNumber; i++) {
-//            int ystart = (int) (lHeight / 2);
-//            int yend = (int) (w - lHeight / 2);
-//            int x = (int) ((0.5 + i) * lHeight);
-//            canvas.drawLine(x, ystart, x, yend, panelLine);
-//        }
-//    }
 
     private void chessboard(Canvas canvas) {
         float startX = lineHeight / 2;
@@ -146,16 +131,16 @@ public class ChessPanel extends View {
         // 绘制usera
         for (Point point : useraArray) {
             // 计算公式为: (x + 0.5) * h - ((ratio * h) / 2) = (x + (1 - ratio) / 2) * h
-            float left = (float) ((point.x + (1 - scale) / 2) * lineHeight);
-            float top = (float) ((point.y + (1 - scale) / 2) * lineHeight);
+            float left = (point.x + (1 - scale) / 2) * lineHeight;
+            float top = (point.y + (1 - scale) / 2) * lineHeight;
             canvas.drawBitmap(userA, left, top, null);
         }
 
         // 绘制userb
         for (Point point : userbArray) {
             // 计算公式为: (x + 0.5) * h - ((ratio * h) / 2) = (x + (1 - ratio) / 2) * h
-            float left = (float) ((point.x + (1 - scale) / 2) * lineHeight);
-            float top = (float) ((point.y + (1 - scale) / 2) * lineHeight);
+            float left = (point.x + (1 - scale) / 2) * lineHeight;
+            float top = (point.y + (1 - scale) / 2) * lineHeight;
             canvas.drawBitmap(userB, left, top, null);
         }
     }
