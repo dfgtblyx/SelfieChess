@@ -48,7 +48,7 @@ public class ChessPanel extends View {
     //输出语句
     private String outText;
 
-    //存储点击位置
+    //存储点击的位置
     protected static List<Point> useraArray = new ArrayList<>();
     protected static List<Point> userbArray = new ArrayList<>();
     //userA先手
@@ -61,7 +61,6 @@ public class ChessPanel extends View {
     }
     public ChessPanel(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        //setBackgroundColor(0xFFFFFFFF);
         //定义格子线的颜色和style
         panelLine = new Paint();
         panelLine.setColor(panelLineColor);
@@ -90,8 +89,6 @@ public class ChessPanel extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         //设置棋盘大小
-//        panelSize = w;
-//        lineHeight = panelSize * 1.0f / (lineNumber);
         lineHeight = h * 1.0f / (lineNumber + 1);
         //设置棋子大小
         int starSize = (int) (lineHeight * scale);
@@ -112,7 +109,6 @@ public class ChessPanel extends View {
      * 画棋盘
      * @param canvas
      */
-
     private void chessboard(Canvas canvas) {
         float startX = lineHeight / 2;
         float stopX = startX + lineNumber * lineHeight;
@@ -155,6 +151,7 @@ public class ChessPanel extends View {
             canvas.drawBitmap(userB, left, top, null);
         }
     }
+    //判断触屏位置
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (gameOver) {
