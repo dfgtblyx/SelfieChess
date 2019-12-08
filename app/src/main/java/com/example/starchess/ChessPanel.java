@@ -9,6 +9,8 @@ import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -16,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChessPanel extends View {
+    @Override
+    public void invalidate() {
+        super.invalidate();
+    }
 
     //棋盘宽度
     private int panelSize;
@@ -24,7 +30,7 @@ public class ChessPanel extends View {
     private float lineHeight;
 
     //行数
-    private int lineNumber = 10;
+    private int lineNumber = 12;
 
     //棋盘线定义
     private Paint panelLine;
@@ -39,11 +45,15 @@ public class ChessPanel extends View {
     //比例
     private float scale = 3 * 1.0f / 4;
 
+    //输出语句
+    private String outText;
+
     //存储点击位置
-    private List<Point> useraArray = new ArrayList<>();
-    private List<Point> userbArray = new ArrayList<>();
+    protected static List<Point> useraArray = new ArrayList<>();
+    protected static List<Point> userbArray = new ArrayList<>();
     //userA先手
-    private boolean turnofa = true;
+    protected static boolean turnofa = true;
+    private boolean gameOver;
 
     //Constructor
     public ChessPanel(Context context) {
@@ -60,8 +70,8 @@ public class ChessPanel extends View {
 
 
         //定义棋子的样式
-        userA = BitmapFactory.decodeResource(getResources(), android.R.drawable.btn_star_big_off);
-        userB = BitmapFactory.decodeResource(getResources(), android.R.drawable.btn_star_big_on);
+        userA = BitmapFactory.decodeResource(getResources(), R.drawable.a);
+        userB = BitmapFactory.decodeResource(getResources(), R.drawable.b);
     }
 
     //测量需要的大小
@@ -95,6 +105,7 @@ public class ChessPanel extends View {
         super.onDraw(canvas);
         chessboard(canvas);
         drawStar(canvas);
+        checkGameOver();
     }
 
     /**
@@ -146,6 +157,9 @@ public class ChessPanel extends View {
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (gameOver) {
+            return false;
+        }
         int action = event.getAction();
         if (action == MotionEvent.ACTION_UP) {
             int x = (int) event.getX();
@@ -165,12 +179,73 @@ public class ChessPanel extends View {
             //invalidate 重新调ondraw
             invalidate();
             turnofa = !turnofa;
+            checkGameOver();
         }
         return true;
     }
 
+    //游戏结束检查
+    private void checkGameOver() {
+        boolean aWin = check(useraArray);
+        boolean bWin = check(userbArray);
+        if (aWin || bWin) {
+            gameOver = true;
+            if (aWin) {
+                outText = "A win!";
+            } else {
+                outText = "B win!";
+            }
+            Toast.makeText(getContext(), outText, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //检查
+    private boolean check(List<Point> list){
+        for (Point point: list) {
+            if(horizontalWin(list, point)) {
+                return true;
+            }
+            if(verticalWin(list, point)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //horizontal
+    private boolean horizontalWin(List<Point> list, Point point) {
+        int x = point.x;
+        int y = point.y;
+        for (int i = 1; i <= 3; i++) {
+            Point now = new Point(x, y + i);
+            if (!list.contains(now)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //vertical
+    private boolean verticalWin(List<Point> list, Point point) {
+        int x = point.x;
+        int y = point.y;
+        for (int i = 1; i <= 3; i++) {
+            Point now = new Point(x + i, y);
+            if (!list.contains(now)) {
+                return false;
+            }
+        }
+        return true;
+    }
     //有效的点
     private Point validPoint(int x, int y) {
         return new Point ((int) (x / lineHeight), (int) (y / lineHeight));
+    }
+    protected void restart() {
+        useraArray.clear();
+        userbArray.clear();
+        gameOver = false;
+        turnofa = true;
+        invalidate();
     }
 }
