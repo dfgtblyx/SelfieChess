@@ -1,7 +1,9 @@
 package com.example.starchess;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +17,29 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         chessPanel = findViewById(R.id.playPanel);
+        if (ChessPanel.gameOver) {
+            AlertDialog.Builder alertcontent = new AlertDialog.Builder(Main2Activity.this);
+            alertcontent.setMessage("GameOver").setCancelable(false)
+                    .setPositiveButton("NewGame", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            newgame();
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+            AlertDialog alert = alertcontent.create();
+            alert.setTitle("GameOver");
+            alert.show();
+        }
+    }
+
+    private void newgame() {
+        chessPanel.restart();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -22,6 +47,8 @@ public class Main2Activity extends AppCompatActivity {
         inflater.inflate(R.menu.game_menu, menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

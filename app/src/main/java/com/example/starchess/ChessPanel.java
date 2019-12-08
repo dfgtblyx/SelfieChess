@@ -1,5 +1,6 @@
 package com.example.starchess;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,6 +42,8 @@ public class ChessPanel extends View {
     //ab user棋子
     private Bitmap userA;
     private Bitmap userB;
+    static int aChoice;
+    static int bChoice;
 
     //比例
     private float scale = 3 * 1.0f / 4;
@@ -53,7 +56,7 @@ public class ChessPanel extends View {
     protected static List<Point> userbArray = new ArrayList<>();
     //userA先手
     protected static boolean turnofa = true;
-    private boolean gameOver;
+    public static boolean gameOver = false;
 
     //Constructor
     public ChessPanel(Context context) {
@@ -68,9 +71,12 @@ public class ChessPanel extends View {
         panelLine.setStyle(Paint.Style.STROKE);
 
 
+
         //定义棋子的样式
-        userA = BitmapFactory.decodeResource(getResources(), R.drawable.a);
-        userB = BitmapFactory.decodeResource(getResources(), R.drawable.b);
+        //aChoice = R.drawable.a;
+        //bChoice = R.drawable.b;
+        userA = BitmapFactory.decodeResource(getResources(), aChoice);
+        userB = BitmapFactory.decodeResource(getResources(), bChoice);
     }
 
     //测量需要的大小
@@ -192,6 +198,7 @@ public class ChessPanel extends View {
             } else {
                 outText = "B win!";
             }
+
             Toast.makeText(getContext(), outText, Toast.LENGTH_SHORT).show();
         }
     }

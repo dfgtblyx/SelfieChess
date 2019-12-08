@@ -21,30 +21,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         chessPanel = findViewById(R.id.playPanel);
         //开始游戏
-        createGame = findViewById(R.id.creategame);
+        createGame = findViewById(R.id.createGame);
         createGame.setOnClickListener(unused -> createGameClicked());
 //        choose();
     }
     private void createGameClicked() {
-        Intent intent = new Intent(this, Main2Activity.class);
+        Intent intent = new Intent(this, User1choose.class);
         startActivity(intent);
     }
 
-//    protected void choose() {
-//        //选择角色
-//        Button ben = findViewById(R.id.ben);
-//        Button geoff = findViewById(R.id.geoff);
-//        ben.setOnClickListener(unused -> clickben());
-//        geoff.setOnClickListener(unused -> clickgeoff());
-//    }
-//
-//    private void clickben() {
-//        ChessPanel.turnofa = false;
-//    }
-//    private void clickgeoff() {
-//        ChessPanel.turnofa = true;
-//    }
-//
 
 
 }
