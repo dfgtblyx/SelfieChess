@@ -1,7 +1,7 @@
 package com.example.starchess;
 
-import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,6 @@ public class ChessPanel extends View {
     public void invalidate() {
         super.invalidate();
     }
-
-    //棋盘宽度
-    private int panelSize;
 
     //行高
     private float lineHeight;
@@ -51,6 +49,8 @@ public class ChessPanel extends View {
     //输出语句
     private String outText;
 
+    private String output;
+    //private String bwins;
     //存储点击的位置
     protected static List<Point> useraArray = new ArrayList<>();
     protected static List<Point> userbArray = new ArrayList<>();
@@ -73,7 +73,7 @@ public class ChessPanel extends View {
 
 
         //定义棋子的样式
-        //aChoice = R.drawable.a;
+//        aChoice = R.drawable.;
         //bChoice = R.drawable.b;
         userA = BitmapFactory.decodeResource(getResources(), aChoice);
         userB = BitmapFactory.decodeResource(getResources(), bChoice);
@@ -194,12 +194,12 @@ public class ChessPanel extends View {
         if (aWin || bWin) {
             gameOver = true;
             if (aWin) {
-                outText = "A win!";
+                output = "User A is the winner!";
             } else {
-                outText = "B win!";
+                output = "User B is the winner!";
             }
-
-            Toast.makeText(getContext(), outText, Toast.LENGTH_SHORT).show();
+            alertpop();
+            //Toast.makeText(getContext(), outText, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -252,4 +252,27 @@ public class ChessPanel extends View {
         turnofa = true;
         invalidate();
     }
+    private void alertpop() {
+        if (ChessPanel.gameOver) {
+            androidx.appcompat.app.AlertDialog.Builder alertcontent
+                    = new androidx.appcompat.app.AlertDialog.Builder(getContext());
+            alertcontent.setMessage(output).setCancelable(false)
+                    .setPositiveButton("NewGame", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            restart();
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.cancel();
+                        }
+                    });
+            AlertDialog alert = alertcontent.create();
+            alert.setTitle("GameOver");
+            alert.show();
+        }
+    }
+
 }

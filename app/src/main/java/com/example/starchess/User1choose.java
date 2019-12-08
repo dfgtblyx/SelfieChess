@@ -28,7 +28,7 @@ public class User1choose extends AppCompatActivity {
     }
     public void checkButton(View v) {
         int radioId = radioGroup.getCheckedRadioButtonId();
-        radioButton = findViewById(radioId);
+        //radioButton = findViewById(radioId);
         if (radioId == -1) {
             ChessPanel.aChoice = R.drawable.geoff1;
         }

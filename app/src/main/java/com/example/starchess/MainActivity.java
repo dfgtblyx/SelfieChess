@@ -23,13 +23,9 @@ public class MainActivity extends AppCompatActivity {
         //开始游戏
         createGame = findViewById(R.id.createGame);
         createGame.setOnClickListener(unused -> createGameClicked());
-//        choose();
     }
     private void createGameClicked() {
         Intent intent = new Intent(this, User1choose.class);
         startActivity(intent);
     }
-
-
-
 }

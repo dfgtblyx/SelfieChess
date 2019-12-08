@@ -9,38 +9,16 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class Main2Activity extends AppCompatActivity {
-    private ChessPanel chessPanel;
+public class Main2Activity extends AppCompatActivity{
+    public static ChessPanel chessPanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         chessPanel = findViewById(R.id.playPanel);
-        if (ChessPanel.gameOver) {
-            AlertDialog.Builder alertcontent = new AlertDialog.Builder(Main2Activity.this);
-            alertcontent.setMessage("GameOver").setCancelable(false)
-                    .setPositiveButton("NewGame", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            newgame();
-                        }
-                    })
-                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-            AlertDialog alert = alertcontent.create();
-            alert.setTitle("GameOver");
-            alert.show();
-        }
     }
 
-    private void newgame() {
-        chessPanel.restart();
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

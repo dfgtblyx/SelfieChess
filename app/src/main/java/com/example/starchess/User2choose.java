@@ -28,7 +28,7 @@ public class User2choose extends AppCompatActivity {
         Button letsGo = findViewById(R.id.next_step2);
         RadioButton geoff1 = findViewById(R.id.checkGeoff1_u2);
         RadioButton geoff2 = findViewById(R.id.checkGeoff2_u2);
-        RadioButton ben = findViewById(R.id.checkBen_u1);
+        RadioButton ben = findViewById(R.id.checkBen_u2);
         if (ChessPanel.aChoice == R.drawable.geoff1) {
             geoff1.setVisibility(GONE);
         }
