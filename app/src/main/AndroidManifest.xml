@@ -9,14 +9,12 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="CS125 Chess"
+        android:label="Selfie Chess"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TakeAnotherPhoto"></activity>
         <activity android:name=".TakePhoto" />
-        <activity android:name=".User2choose" />
-        <activity android:name=".User1choose" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".MainActivity">
             <intent-filter>

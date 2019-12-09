@@ -13,27 +13,5 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"></com.example.starchess.ChessPanel>
 
-    <Button
-        android:id="@+id/ben"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="102dp"
-        android:layout_marginBottom="0dp"
-        android:background="@drawable/b"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/geoff"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/a"
-        android:visibility="gone" />
 
 </RelativeLayout>

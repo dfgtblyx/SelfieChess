@@ -41,15 +41,11 @@ public class ChessPanel extends View {
     //ab user棋子
     static Bitmap userA;
     static Bitmap userB;
-    static int aChoice;
-    static int bChoice;
 
     //比例
     private float scale = 3 * 1.0f / 4;
 
     //输出语句
-    private String outText;
-
     private String output;
     //private String bwins;
     //存储点击的位置
@@ -71,13 +67,6 @@ public class ChessPanel extends View {
         panelLine.setDither(true);
         panelLine.setStyle(Paint.Style.STROKE);
 
-
-
-        //定义棋子的样式
-//        aChoice = R.drawable.;
-        bChoice = R.drawable.b;
-        //userA = BitmapFactory.decodeResource(getResources(), aChoice);
-        //userB = BitmapFactory.decodeResource(getResources(), bChoice);
     }
 
     //测量需要的大小
@@ -254,17 +243,17 @@ public class ChessPanel extends View {
         invalidate();
     }
     private void alertpop() {
-        if (ChessPanel.gameOver) {
+        if (gameOver) {
             androidx.appcompat.app.AlertDialog.Builder alertcontent
                     = new androidx.appcompat.app.AlertDialog.Builder(getContext());
             alertcontent.setMessage(output).setCancelable(false)
-                    .setPositiveButton("NewGame", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("New Game", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             restart();
                         }
                     })
-                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("view board", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel();

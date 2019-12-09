@@ -21,7 +21,7 @@ public class TakeAnotherPhoto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_another_photo);
         mimageView = findViewById(R.id.imageview2);
-        ChessPanel.userB = BitmapFactory.decodeResource(getResources(), R.drawable.ben);
+        ChessPanel.userB = BitmapFactory.decodeResource(getResources(), R.drawable.chuchu);
         mimageView.setImageBitmap(ChessPanel.userB);
         confirm = findViewById(R.id.user2confirm);
         confirm.setOnClickListener(unused -> confirmClicked());
