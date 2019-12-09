@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         createGame.setOnClickListener(unused -> createGameClicked());
     }
     private void createGameClicked() {
-        Intent intent = new Intent(this, User1choose.class);
+        Intent intent = new Intent(this, TakePhoto.class);
         startActivity(intent);
     }
 }

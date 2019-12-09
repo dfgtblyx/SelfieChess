@@ -38,8 +38,8 @@ public class ChessPanel extends View {
     private int panelLineColor = 0xFFFFFFFF;
 
     //ab user棋子
-    private Bitmap userA;
-    private Bitmap userB;
+    static Bitmap userA;
+    static Bitmap userB;
     static int aChoice;
     static int bChoice;
 
@@ -74,9 +74,9 @@ public class ChessPanel extends View {
 
         //定义棋子的样式
 //        aChoice = R.drawable.;
-        //bChoice = R.drawable.b;
-        userA = BitmapFactory.decodeResource(getResources(), aChoice);
-        userB = BitmapFactory.decodeResource(getResources(), bChoice);
+        bChoice = R.drawable.b;
+        //userA = BitmapFactory.decodeResource(getResources(), aChoice);
+        //userB = BitmapFactory.decodeResource(getResources(), bChoice);
     }
 
     //测量需要的大小
