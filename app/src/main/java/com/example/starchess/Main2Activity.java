@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +34,8 @@ public class Main2Activity extends AppCompatActivity{
         int id = item.getItemId();
         if (id == R.id.id_restart) {
             chessPanel.restart();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
