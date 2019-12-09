@@ -9,11 +9,20 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="25dp"
-        android:text="User2 please take a selfie" />
+        android:layout_marginTop="5dp"
+        android:text="User2 please take a selfie"
+        android:textSize="18sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="OR CHOOSE BEN"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
     <Button
         android:layout_width="wrap_content"
@@ -21,13 +30,13 @@
         android:text="Take a picture"
         android:onClick="takePicture"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="55dp"/>
+        android:layout_marginTop="25dp"/>
     <ImageView
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
         android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="25dp"
         android:id="@+id/imageview2"
         />
 
@@ -36,6 +45,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="25dp"
         android:text="Confirm" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click confirm if satisfied"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18sp" />
 </LinearLayout>

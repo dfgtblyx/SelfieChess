@@ -29,7 +29,7 @@ public class ChessPanel extends View {
     private float lineHeight;
 
     //行数
-    private int lineNumber = 12;
+    private int lineNumber = 10;
 
     //棋盘线定义
     private Paint panelLine;

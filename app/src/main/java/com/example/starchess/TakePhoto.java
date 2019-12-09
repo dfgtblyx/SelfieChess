@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -21,6 +22,8 @@ public class TakePhoto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_photo);
         mimageView = findViewById(R.id.imageview);
+        ChessPanel.userA = BitmapFactory.decodeResource(getResources(), R.drawable.geoff1);
+        mimageView.setImageBitmap(ChessPanel.userA);
         confirm = findViewById(R.id.user1confirm);
         confirm.setOnClickListener(unused -> confirmClicked());
     }
@@ -36,8 +39,7 @@ public class TakePhoto extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             ChessPanel.userA = (Bitmap) extras.get("data");
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            mimageView.setImageBitmap(imageBitmap);
+            mimageView.setImageBitmap(ChessPanel.userA);
         }
 
     }

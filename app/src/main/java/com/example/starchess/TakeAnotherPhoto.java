@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -20,6 +21,8 @@ public class TakeAnotherPhoto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_another_photo);
         mimageView = findViewById(R.id.imageview2);
+        ChessPanel.userB = BitmapFactory.decodeResource(getResources(), R.drawable.ben);
+        mimageView.setImageBitmap(ChessPanel.userB);
         confirm = findViewById(R.id.user2confirm);
         confirm.setOnClickListener(unused -> confirmClicked());
     }
@@ -35,19 +38,11 @@ public class TakeAnotherPhoto extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             ChessPanel.userB = (Bitmap) extras.get("data");
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            mimageView.setImageBitmap(imageBitmap);
+            mimageView.setImageBitmap(ChessPanel.userB);
         }
-//        Intent intent = new Intent(this, Main2Activity.class);
-//        startActivity(intent);
-
     }
     public void confirmClicked() {
         Intent intent = new Intent(this, Main2Activity.class);
         startActivity(intent);
     }
-//    protected void confirm(View v) {
-//        Intent intent = new Intent(this, Main2Activity.class);
-//        startActivity(intent);
-//    }
 }
