@@ -32,12 +32,17 @@ public class Main2Activity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.id_restart) {
+        if (id == R.id.id_startover) {
             chessPanel.restart();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;
         }
-        return super.onOptionsItemSelected(item);
+        if (id == R.id.id_restart) {
+            //return super.onOptionsItemSelected(item);
+            chessPanel.restart();
+            return true;
+        }
+        return false;
     }
 }

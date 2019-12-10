@@ -2,7 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/id_restart"
+        android:title="RESTART"></item>
+    <item
+        android:id="@+id/id_startover"
         android:title="STARTOVER"></item>
+
         //android:showAsAction="never"
 
 </menu>
