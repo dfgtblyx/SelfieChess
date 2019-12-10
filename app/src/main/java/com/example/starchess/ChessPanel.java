@@ -38,6 +38,9 @@ public class ChessPanel extends View {
     static Bitmap userA;
     static Bitmap userB;
 
+    boolean bWin = false;
+    boolean aWin = false;
+
     //比例
     private float scale = 3 * 1.0f / 4;
 
@@ -94,7 +97,6 @@ public class ChessPanel extends View {
         super.onDraw(canvas);
         chessboard(canvas);
         drawStar(canvas);
-        checkGameOver();
     }
 
     /**
@@ -175,8 +177,8 @@ public class ChessPanel extends View {
 
     //游戏结束检查
     private void checkGameOver() {
-        boolean aWin = check(useraArray);
-        boolean bWin = check(userbArray);
+        aWin = check(useraArray);
+        bWin = check(userbArray);
         if (aWin || bWin) {
             gameOver = true;
             if (aWin) {
@@ -232,33 +234,33 @@ public class ChessPanel extends View {
         return new Point ((int) (x / lineHeight), (int) (y / lineHeight));
     }
     protected void restart() {
+        gameOver = false;
         useraArray.clear();
         userbArray.clear();
-        gameOver = false;
         turnofa = true;
         invalidate();
     }
     private void alertpop() {
-        if (gameOver) {
-            androidx.appcompat.app.AlertDialog.Builder alertcontent
-                    = new androidx.appcompat.app.AlertDialog.Builder(getContext());
-            alertcontent.setMessage(output).setCancelable(false)
-                    .setPositiveButton("New Game", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            restart();
-                        }
-                    })
-                    .setNegativeButton("view board", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.cancel();
-                        }
-                    });
-            AlertDialog alert = alertcontent.create();
-            alert.setTitle("GameOver");
-            alert.show();
-        }
+
+        androidx.appcompat.app.AlertDialog.Builder alertcontent
+                = new androidx.appcompat.app.AlertDialog.Builder(getContext());
+        alertcontent.setTitle("GameOver");
+        alertcontent.setMessage(output).setCancelable(false)
+                .setPositiveButton("New Game", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        restart();
+                    }
+                })
+                .setNegativeButton("view board", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+        AlertDialog alert = alertcontent.create();
+        alert.show();
+
     }
 
 }
